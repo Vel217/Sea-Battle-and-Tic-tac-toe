@@ -46,19 +46,15 @@ export class Board {
       { x, y: y + 1 },
       { x, y: y - 1 },
     ].filter((cell) => {
-
       return !currentShipCells.some((currentShipCell) => {
         return currentShipCell.x === cell.x && currentShipCell.y === cell.y;
       });
     });
 
     const hasOtherShipNear = cellsForCheck.some((checkingCell) => {
-      console.log("checkingCell", checkingCell);
       return this.cells.some((line) => {
         return line.some((cell) => {
-          console.log("cell", cell);
           if (cell.x === checkingCell.x && cell.y === checkingCell.y) {
-            console.log("RTY", cell.mark && cell.mark.name === "ship");
             return cell.mark && cell.mark.name === "ship";
           }
         });

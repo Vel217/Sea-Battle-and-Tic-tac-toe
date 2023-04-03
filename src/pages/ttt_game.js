@@ -1,19 +1,10 @@
-import React, { Fragment, useState, useEffect, useCallback } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useParams } from "react-router-dom";
 
 const BOARD_SIZE = 3;
 const FULL_BOARD_SIZE = BOARD_SIZE * BOARD_SIZE;
 const gameName = "tic-tac";
-// const victory = [
-//   [1,1,1,0,0,0,0,0,0],
-//   [0,0,0,1,1,1,0,0,0],
-//   [0,0,0,0,0,0,1,1,1],
-//   [1,0,0,1,0,0,1,0,0],
-//   [0,1,0,0,1,0,0,1,0],
-//   [0,0,1,0,0,1,0,0,1],
-//   [1,0,0,0,1,0,0,0,1],
-//   [0,0,1,0,1,0,1,0,0],
-// ]
+
 const victory = [
   [0, 1, 2],
   [3, 4, 5],
@@ -55,15 +46,7 @@ function Ttt_game() {
 
   wss.onmessage = (response) => {
     const { type, payload } = JSON.parse(response.data);
-    const {
-      username,
-      index,
-      enemyName,
-      currentSign,
-      gameIsReady,
-      moveSign,
-      victory,
-    } = payload;
+    const { index, enemyName, currentSign, gameIsReady, moveSign } = payload;
 
     switch (type) {
       case "connectToPlay": {
@@ -83,7 +66,6 @@ function Ttt_game() {
         break;
       }
       default: {
-        console.log(`Unknown message type: ${type}`);
       }
     }
   };

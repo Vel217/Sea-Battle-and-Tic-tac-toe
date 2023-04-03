@@ -2,27 +2,9 @@ const WebSocket = require("ws");
 const express = require("express");
 const app = express();
 
-const port = 4001;
-
-// app.use(express.static("./client/build"));
+app.use(express.static("./build"));
 
 const games = {};
-
-// function start() {
-//   const wss = new WebSocket.Server({ path: '/sea-battle', port: 4000 }, () => {
-//     console.log("WebSocket server started on port 4000");
-//   });
-//   wss.on("connection", (wsClient) => {
-//     wsClient.on("message", async (message) => {
-//       const req = JSON.parse(message.toString());
-//       if (req.event === "connect") {
-//         wsClient.nickname = req.payload.username;
-//         initGames(wsClient, req.payload.gameId);
-//       }
-//       broadcast(req);
-//     });
-//   });
-// }
 
 function start() {
   const wss = new WebSocket.Server({ port: 4000 }, () => {
@@ -160,7 +142,4 @@ function broadcastTicTac(params) {
   });
 }
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}…`);
-  start();
-});
+start();

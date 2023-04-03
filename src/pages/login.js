@@ -5,13 +5,12 @@ function Login() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const onSubmit = () => {
-  
-    if (name){
+    if (name) {
       localStorage.setItem("name", name);
-        navigate("/choose_game");
+      navigate("/choose_game");
     }
-  }
-  
+  };
+
   return (
     <div className="flex justify-center">
       <div className="overflow-hidden mt-10  w-1/2 bg-sky-300 shadow sm:rounded-lg">
@@ -34,7 +33,7 @@ function Login() {
             />
           </div>
         </div>
-        {/* кнопка должна быть задизейблена, когда нет имени */}
+
         <button
           onClick={onSubmit}
           type="button"

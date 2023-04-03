@@ -8,7 +8,7 @@ const steps = [
     name: "Choose Game",
     href: "/choose_game",
   },
- 
+
   { id: "Step 3", name: "Game", href: "/game" },
 ];
 
