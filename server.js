@@ -145,6 +145,9 @@ app.use(express.static("./build"));
 app.get("*", (req, res) => {
   res.sendFile(__dirname + "/build/index.html");
 });
+app.get("/", (req, res) => {
+  res.send(200);
+});
 
 server.listen(4000, () => {
   start();
