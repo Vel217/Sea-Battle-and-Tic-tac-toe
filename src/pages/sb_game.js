@@ -6,7 +6,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import SetShipBoardComponent from "../components/sb_board/SetShipsBoardComponent";
 
 const gameName = "sea-battle";
-const wss = new WebSocket(`ws://${window.location.hostname}/ws`);
+const wss = new WebSocket(`wss://${window.location.hostname}/ws`);
 function Game() {
   const [myBoard, setMyBoard] = useState(new Board());
   const [hisBoard, setHisBoard] = useState(new Board());
