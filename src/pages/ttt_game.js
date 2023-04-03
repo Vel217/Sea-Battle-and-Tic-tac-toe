@@ -15,7 +15,7 @@ const victory = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-const wss = new WebSocket(`ws://${window.location.hostname}:4000`);
+const wss = new WebSocket(`ws://${window.location.hostname}/ws`);
 function Ttt_game() {
   let { gameId } = useParams();
   const [enemyName, setEnemyName] = useState(null);

@@ -5,16 +5,10 @@ const http = require("http");
 const app = express();
 
 const server = http.createServer(app);
-app.use(express.static("./build"));
-
-app.get("*", (req, res) => {
-  res.sendFile(__dirname + "/build/index.html");
-});
-
 const games = {};
 
 function start() {
-  const wss = new WebSocket.Server({ server });
+  const wss = new WebSocket.Server({ server, path: "/ws" });
   wss.on("connection", (wsClient) => {
     wsClient.on("message", async (message) => {
       const req = JSON.parse(message.toString());
@@ -146,6 +140,11 @@ function broadcastTicTac(params) {
     client.send(JSON.stringify(res));
   });
 }
+
+app.use(express.static("./build"));
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
+});
 
 server.listen(4000, () => {
   start();
