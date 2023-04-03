@@ -5,7 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import SetShipBoardComponent from "../components/sb_board/SetShipsBoardComponent";
 
-const wss = new WebSocket(`ws://${window.location.hostname}:4000`);
+const gameName = "sea-battle";
+const wss = new WebSocket(`ws://${window.location.hostname}:4000/`);
 function Game() {
   const [myBoard, setMyBoard] = useState(new Board());
   const [hisBoard, setHisBoard] = useState(new Board());
@@ -34,25 +35,25 @@ function Game() {
   useEffect(() => {
     const myDamage = myBoard.cells.flatMap((el) => {
       return el.filter((item) => {
-        return item.mark?.name == "damage";
+        return item.mark?.name === "damage";
       });
     });
     const hisDamage = hisBoard.cells.flatMap((el) => {
       return el.filter((item) => {
-        return item.mark?.name == "damage";
+        return item.mark?.name === "damage";
       });
     });
-    setGameOver(myDamage.length === 20 || hisDamage.length === 20);
+    setGameOver(myDamage.length === 4 || hisDamage.length === 4);
 
     if (gameOver) {
-      if (myDamage == 20) {
+      if (myDamage.length === 4) {
         setWinner(enemyName);
       } else {
         setWinner(userName);
       }
     }
   });
- 
+
   function shoot(x, y) {
     sendMessage({
       event: "shoot",
@@ -85,12 +86,10 @@ function Game() {
         if (username !== userName) {
           const isPerfectHit = myBoard.cells[y][x].mark?.name === "ship";
           changeBoardAfterShoot(myBoard, setMyBoard, x, y, isPerfectHit);
-          wss.send(
-            JSON.stringify({
-              event: "checkShoot",
-              payload: { ...payload, isPerfectHit },
-            })
-          );
+          sendMessage({
+            event: "checkShoot",
+            payload: { ...payload, isPerfectHit },
+          });
           if (!isPerfectHit) {
             setCanShoot(true);
           }
@@ -121,7 +120,7 @@ function Game() {
 
   const sendMessage = (payload) => {
     const send = () => {
-      wss.send(JSON.stringify(payload));
+      wss.send(JSON.stringify({ gameName, ...payload }));
     };
     if (wss.readyState === WebSocket.OPEN) {
       send();

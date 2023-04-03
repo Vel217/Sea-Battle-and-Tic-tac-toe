@@ -10,9 +10,9 @@ const SetShipBoardComponent = ({ board, setBoard, setShipsReady }) => {
 
   const steps = [
     { count: 1, cells: 4, name: "«four-deck»" },
-    { count: 2, cells: 3, name: "«three-deck»" },
-    { count: 3, cells: 2, name: "«double-deck»" },
-    { count: 4, cells: 1, name: "«single-deck»" },
+    // { count: 2, cells: 3, name: "«three-deck»" },
+    // { count: 3, cells: 2, name: "«double-deck»" },
+    // { count: 4, cells: 1, name: "«single-deck»" },
   ];
 
   const [currentStep, setCurrentStep] = useState(0);

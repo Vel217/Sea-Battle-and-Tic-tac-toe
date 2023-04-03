@@ -4,7 +4,8 @@ import Game from "./pages/sb_game";
 import Login from "./pages/login";
 import "./App.css";
 import Header from "./pages/Header";
-import Ttt_game from "./pages/ttt_game"
+import TicTacGame from "./pages/ttt_game";
+
 function App() {
   return (
     <div className="App">
@@ -16,7 +17,9 @@ function App() {
           <Route path="/game">
             <Route path=":gameId" element={<Game />} />
           </Route>
-          <Route path="/ttt_game" element={<Ttt_game />} />
+          <Route path="/tic-tac">
+            <Route path=":gameId" element={<TicTacGame />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

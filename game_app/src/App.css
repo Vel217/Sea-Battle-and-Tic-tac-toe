@@ -15,19 +15,19 @@
 }
 
 .cell {
-display: flex;
-justify-content: center;
-align-items: center;
-width: 30px;
-height: 30px;
-border: 1px solid rgb(146, 146, 249);
-box-sizing: border-box;
-line-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(146, 146, 249);
+  box-sizing: border-box;
+  line-height: 100%;
 }
 
 .red {
   color: red;
-  background-color:#ccc ;
+  background-color: #ccc;
 }
 
 .blue {
@@ -38,7 +38,7 @@ line-height: 100%;
 }
 
 .grey {
-  background-color: #ccc
+  background-color: #ccc;
 }
 
 /* .board_ttt {
@@ -71,6 +71,19 @@ line-height: 100%;
   padding: 10px;
 }
 
+.app.-active .board_ttt {
+  animation: pulse 1s linear 0s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0px 4px 23px 10px rgb(42 199 102 / 20%);
+  }
+  100% {
+    box-shadow: 0px 4px 3px 1px rgb(42 199 102 / 20%);
+  }
+}
+
 .row {
   display: flex;
 }
@@ -89,4 +102,17 @@ line-height: 100%;
 
 .cell_ttt:hover {
   background-color: #929292;
+}
+
+.cell_ttt.not-my-turn {
+  cursor: not-allowed;
+}
+
+.cell_ttt.not-my-turn:hover {
+  background-color: inherit;
+}
+
+.cell_ttt.-winning,
+.cell_ttt.-winning:hover {
+  background-color: rgba(72, 228, 79, 0.259);
 }

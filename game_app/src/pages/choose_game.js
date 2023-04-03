@@ -8,7 +8,7 @@ function classNames(...classes) {
 const settings = [
   {
     name: "Tic Tac Toe",
-    route: "/game/",
+    route: "/tic-tac/",
   },
   {
     name: "Sea Battle",
@@ -40,7 +40,6 @@ function Choose_game() {
         return "sb";
       }
     };
-    console.log(prefix());
     navigate(route + prefix() + gameId);
   };
   return (
