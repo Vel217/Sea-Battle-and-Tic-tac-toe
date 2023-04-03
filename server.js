@@ -1,10 +1,15 @@
 const WebSocket = require("ws");
 const express = require("express");
 const http = require("http");
+
 const app = express();
 
 const server = http.createServer(app);
 app.use(express.static("./build"));
+
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/build/index.html");
+});
 
 const games = {};
 
