@@ -43,10 +43,10 @@ function Game() {
         return item.mark?.name === "damage";
       });
     });
-    setGameOver(myDamage.length === 4 || hisDamage.length === 4);
+    setGameOver(myDamage.length === 20 || hisDamage.length === 20);
 
     if (gameOver) {
-      if (myDamage.length === 4) {
+      if (myDamage.length === 20) {
         setWinner(enemyName);
       } else {
         setWinner(userName);
