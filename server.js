@@ -1,15 +1,15 @@
 const WebSocket = require("ws");
 const express = require("express");
+const http = require("http");
 const app = express();
 
+const server = http.createServer(app);
 app.use(express.static("./build"));
 
 const games = {};
 
 function start() {
-  const wss = new WebSocket.Server({ port: 4000 }, () => {
-    console.log("WebSocket server started on port 4000");
-  });
+  const wss = new WebSocket.Server({ server });
   wss.on("connection", (wsClient) => {
     wsClient.on("message", async (message) => {
       const req = JSON.parse(message.toString());
@@ -142,4 +142,6 @@ function broadcastTicTac(params) {
   });
 }
 
-start();
+server.listen(4000, () => {
+  start();
+});
