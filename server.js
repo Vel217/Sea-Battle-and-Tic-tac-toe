@@ -149,6 +149,6 @@ app.get("/", (req, res) => {
   res.send(200);
 });
 
-server.listen(4000, () => {
+server.listen(process.env.PORT || 4000, () => {
   start();
 });
